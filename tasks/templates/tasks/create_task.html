@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Post Task{% endblock %}
+
+{% block content %}
+
+<h1>Post a New Task</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <label>Title</label>
+    <input type="text" name="title" required>
+
+    <label>Description</label>
+    <textarea name="description" required></textarea>
+
+    <label>Category</label>
+    <select name="category">
+        <option value="Writing">Writing</option>
+        <option value="Design">Design</option>
+        <option value="Coding">Coding</option>
+    </select>
+
+    <label>Budget</label>
+    <input type="number" name="budget" step="0.01" required>
+
+    <button type="submit">
+        Post Task
+    </button>
+
+</form>
+
+{% endblock %}
