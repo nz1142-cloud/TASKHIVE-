@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - TaskHive{% endblock %}
+
+{% block content %}
+
+<h1>Available Tasks</h1>
+
+{% for task in tasks %}
+
+<div class="card">
+
+    <h2>{{ task.title }}</h2>
+
+    <p>{{ task.description }}</p>
+
+    <p>
+        <strong>Category:</strong>
+        {{ task.category }}
+    </p>
+
+    <p>
+        <strong>Budget:</strong>
+        ${{ task.budget }}
+    </p>
+
+    <a href="{% url 'task_detail' task.id %}">
+        View Details
+    </a>
+
+</div>
+
+{% empty %}
+
+<p>No open tasks available.</p>
+
+{% endfor %}
+
+{% endblock %}
