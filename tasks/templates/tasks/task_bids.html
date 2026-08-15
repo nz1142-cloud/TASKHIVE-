@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Task Bids{% endblock %}
+
+{% block content %}
+
+<h1>Bids for {{ task.title }}</h1>
+
+{% for bid in bids %}
+
+<div class="card">
+
+    <h3>{{ bid.freelancer.username }}</h3>
+
+    <p>
+        Amount: ${{ bid.amount }}
+    </p>
+
+    <p>
+        {{ bid.message }}
+    </p>
+
+    {% if task.status == 'Open' %}
+
+    <a href="{% url 'choose_winner' bid.id %}">
+        Choose This Freelancer
+    </a>
+
+    {% endif %}
+
+</div>
+
+{% empty %}
+
+<p>No bids yet.</p>
+
+{% endfor %}
+
+{% endblock %}
